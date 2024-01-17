@@ -5,8 +5,8 @@
   <main>
     <router-view />
   </main>
-   <footer class="bg-dark text-light">
-    Made with 💖 by CodeWorks
+  <footer class=" text-dark">
+    <p class="m-5 fs-5"><i class="mdi mdi-copyright"></i> 2024 by Laura Alspaugh.</p>
   </footer>
 </template>
 
@@ -27,7 +27,7 @@ export default {
 <style lang="scss">
 @import "./assets/scss/main.scss";
 
-:root{
+:root {
   --main-height: calc(100vh - 32px - 64px);
 }
 
@@ -36,5 +36,6 @@ footer {
   display: grid;
   place-content: center;
   height: 32px;
+  background-color: #B2BABB;
 }
 </style>
