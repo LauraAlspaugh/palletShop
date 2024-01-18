@@ -6,8 +6,14 @@
       </div>
     </section>
     <section class="row justify-content-evenly mt-5">
-      <div class="col-11 main-image">
-        <p class="fs-1 text-center text-light head-title">Products at a Cheaper Cost.</p>
+      <div class="col-11">
+        <div class="main-image"></div>
+        <div class="head-title">
+          <p class="fs-1">Products at a Cheaper Cost.</p>
+          <RouterLink :to="{ name: 'Items' }">
+            <button class="btn btn-outline-white">Shop Now</button>
+          </RouterLink>
+        </div>
       </div>
     </section>
   </div>
@@ -30,12 +36,27 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   height: 500px;
-
-
+  border-radius: 7px;
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
 }
 
 .head-title {
-  vertical-align: center;
-  align-items: center;
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/opacity/see-through */
+  color: #B2BABB;
+  font-weight: bold;
+  border: 3px solid #B2BABB;
+  border-radius: 7px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
 }
 </style>
