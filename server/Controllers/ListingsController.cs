@@ -1,4 +1,6 @@
 namespace palletShop.Controllers;
+[ApiController]
+[Route("api/[controller]")]
 public class ListingsController : ControllerBase
 {
     private readonly ListingsService _listingsService;
@@ -36,6 +38,21 @@ public class ListingsController : ControllerBase
         }
         catch (Exception error)
         {
+
+            return BadRequest(error.Message);
+        }
+    }
+    [HttpGet("{listingId}")]
+    public ActionResult<Listing> GetListingById(int listingId)
+    {
+        try
+        {
+            Listing listing = _listingsService.GetListingById(listingId);
+            return Ok(listing);
+        }
+        catch (Exception error)
+        {
+
 
             return BadRequest(error.Message);
         }

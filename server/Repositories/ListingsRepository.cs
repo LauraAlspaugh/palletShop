@@ -32,11 +32,30 @@ public class ListingsRepository
         return listing;
     }
 
+    internal Listing GetListingById(int listingId)
+    {
+
+        string sql = @"
+       SELECT 
+       lis.*,
+       acc.*
+       FROM listings lis
+       JOIN accounts acc ON lis.creatorId = acc.id
+       WHERE lis.id = @listingId;
+       ";
+        Listing listing = _db.Query<Listing, Account, Listing>(sql, (listing, account) =>
+        {
+            listing.Creator = account;
+            return listing;
+        }, new { listingId }).FirstOrDefault();
+        return listing;
+    }
+
     internal List<Listing> GetListings()
     {
         string sql = @"
     SELECT 
-    list.*,
+    lis.*,
     acc.*
     FROM listings lis
     JOIN accounts acc ON lis.creatorId = acc.id

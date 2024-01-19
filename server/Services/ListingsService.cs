@@ -1,5 +1,6 @@
 
 
+
 namespace palletShop.Services;
 public class ListingsService
 {
@@ -13,6 +14,16 @@ public class ListingsService
     internal Listing CreateListing(Listing listingData)
     {
         Listing listing = _listingsRepository.CreateListing(listingData);
+        return listing;
+    }
+
+    internal Listing GetListingById(int listingId)
+    {
+        Listing listing = _listingsRepository.GetListingById(listingId);
+        if (listing == null)
+        {
+            throw new Exception("not a valid listing id");
+        }
         return listing;
     }
 
