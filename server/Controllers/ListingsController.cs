@@ -57,4 +57,21 @@ public class ListingsController : ControllerBase
             return BadRequest(error.Message);
         }
     }
+    [Authorize]
+    [HttpPut("{listingId}")]
+    public async Task<ActionResult<Listing>> EditListing(int listingId, [FromBody] Listing listingData)
+    {
+        try
+        {
+            Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+            string userId = userInfo.Id;
+            Listing listing = _listingsService.EditListing(listingId, listingData, userId);
+            return listing;
+        }
+        catch (Exception error)
+        {
+
+            return BadRequest(error.Message);
+        }
+    }
 }

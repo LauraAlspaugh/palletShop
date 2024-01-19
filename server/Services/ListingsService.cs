@@ -17,6 +17,22 @@ public class ListingsService
         return listing;
     }
 
+    internal Listing EditListing(int listingId, Listing listingData, string userId)
+    {
+        Listing listing = GetListingById(listingId);
+        if (listing.CreatorId != userId)
+        {
+            throw new Exception("not your listing to edit!");
+        }
+
+        listing.Name = listingData.Name ?? listing.Name;
+        listing.Img = listingData.Img ?? listing.Img;
+        listing.Category = listingData.Category ?? listing.Category;
+        listing.Description = listingData.Description ?? listing.Description;
+        _listingsRepository.EditListing(listing);
+        return listing;
+    }
+
     internal Listing GetListingById(int listingId)
     {
         Listing listing = _listingsRepository.GetListingById(listingId);

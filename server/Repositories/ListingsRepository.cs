@@ -32,6 +32,32 @@ public class ListingsRepository
         return listing;
     }
 
+    internal Listing EditListing(Listing listing)
+    {
+        string sql = @"
+    UPDATE listings 
+    SET 
+    
+name = @Name,
+description = @Description,
+img = @img,
+category = @Category
+WHERE id = @Id;
+
+SELECT lis.*,
+    acc.*
+    FROM listings lis
+    JOIN accounts acc ON lis.creatorId = acc.id
+    Where lis.id = @Id;
+    ";
+        Listing newListing = _db.Query<Listing, Account, Listing>(sql, (listing, account) =>
+      {
+          listing.Creator = account;
+          return listing;
+      }, listing).FirstOrDefault();
+        return newListing;
+    }
+
     internal Listing GetListingById(int listingId)
     {
 
