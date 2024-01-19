@@ -12,9 +12,26 @@
 <script>
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
+import { logger } from '../utils/Logger.js';
+import Pop from '../utils/Pop.js';
+import { listingsService } from '../services/ListingsService.js';
 export default {
     setup() {
-        return {}
+        onMounted(() => {
+            getListings()
+        })
+        async function getListings() {
+            try {
+                await listingsService.getListings()
+            } catch (error) {
+                logger.error(error)
+                Pop.error(error)
+
+            }
+        }
+        return {
+            listings: computed(() => AppState.listings)
+        }
     }
 };
 </script>
