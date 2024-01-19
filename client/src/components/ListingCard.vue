@@ -1,7 +1,9 @@
 <template>
-    <div class="listing-card mb-3">
+    <div class="listing-card mb-5">
         <img class="img-fluid" :src="listingProp.img" alt="photo of listing">
-        <p class="fs-4 text-center p-3 listing-name">{{ listingProp.name }}</p>
+        <p class="fs-4 text-center mt-2 listing-name">{{ listingProp.name }}</p>
+        <p class="listing-name text-center fs-4">${{ listingProp.price }}</p>
+        <!-- <p class="text-center"><i class="mdi mdi-eye text-center"></i></p> -->
     </div>
 </template>
 
