@@ -7,7 +7,7 @@
             <div class="col-4">
                 <p class="p-0 mt-5 fs-3 listing-name">{{ listing.name }}</p>
                 <p>{{ listing.description }}</p>
-                <p>${{ listing.price }}</p>
+                <p class="price-name fs-5">${{ listing.price }}.00</p>
                 <p>{{ listing.quantity }} in stock</p>
                 <div class="mb-3">
                     <label for="quantity" class="form-label fs-5">Quantity</label>
@@ -80,5 +80,9 @@ input {
 label {
     font-family: 'Pinyon Script', cursive;
     color: #7F8C8D;
+}
+
+.price-name {
+    font-family: 'Pinyon Script', cursive;
 }
 </style>
