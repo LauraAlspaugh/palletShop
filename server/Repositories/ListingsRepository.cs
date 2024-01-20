@@ -32,6 +32,19 @@ public class ListingsRepository
         return listing;
     }
 
+    internal void DestroyListing(int listingId, string userId)
+    {
+        string sql = @"
+DELETE FROM listings WHERE id = @listingId LIMIT 1;
+SELECT lis.*,
+    acc.*
+    FROM listings lis
+    JOIN accounts acc ON lis.creatorId = acc.id
+    Where lis.id = @listingId;
+";
+        _db.Execute(sql, new { listingId });
+    }
+
     internal Listing EditListing(Listing listing)
     {
         string sql = @"
