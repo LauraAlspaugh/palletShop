@@ -15,5 +15,12 @@ async getListingById(listingId){
    logger.log('getting listing by id', res.data)
    AppState.activeListing = new Listing(res.data)
    }
+   async createListing(listingData){
+    const res = await api.post('api/listings', listingData)
+    logger.log('creating listing!', res.data)
+    const newListing = new Listing(res.data)
+    AppState.listings.push(newListing)
+    return newListing
+}
 }
 export const listingsService = new ListingsService()
