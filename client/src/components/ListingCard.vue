@@ -1,6 +1,8 @@
 <template>
     <div class="listing-card mb-5">
-        <img class="img-fluid" :src="listingProp.img" alt="photo of listing">
+        <router-link :to="{ name: 'Listing', params: { listingId: listingProp.id } }">
+            <img class="img-fluid" :src="listingProp.img" alt="photo of listing">
+        </router-link>
         <p class="fs-4 text-center mt-2 listing-name">{{ listingProp.name }}</p>
         <p class="listing-name text-center fs-4">${{ listingProp.price }}</p>
         <!-- <p class="text-center"><i class="mdi mdi-eye text-center"></i></p> -->

@@ -29,6 +29,7 @@ public class ListingsService
         listing.Img = listingData.Img ?? listing.Img;
         listing.Category = listingData.Category ?? listing.Category;
         listing.Description = listingData.Description ?? listing.Description;
+        listing.Quantity = listingData.Quantity ?? listing.Quantity;
         _listingsRepository.EditListing(listing);
         return listing;
     }

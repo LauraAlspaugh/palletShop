@@ -15,8 +15,8 @@ public class ListingsRepository
     {
         string sql = @"
     INSERT INTO 
-    listings(name, description, price, img, category, creatorId)
-    VALUES(@Name, @Description, @Price, @Img, @Category, @CreatorId);
+    listings(name, description, price, img, quantity, category, creatorId)
+    VALUES(@Name, @Description, @Price, @Img, @Quantity, @Category, @CreatorId);
     SELECT 
     lis.*,
     acc.*
@@ -41,7 +41,8 @@ public class ListingsRepository
 name = @Name,
 description = @Description,
 img = @img,
-category = @Category
+category = @Category,
+quantity = @Quantity
 WHERE id = @Id;
 
 SELECT lis.*,

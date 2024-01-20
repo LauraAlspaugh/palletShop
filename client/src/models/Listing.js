@@ -6,6 +6,7 @@ export class Listing{
         this.price = data.price
         this.img = data.img
         this.category = data.category
+        this.quantity = data.quantity
         this.creatorId = data.creatorId
         this.creator = data.creator
         this.createdAt = new Date(data.createdAt).toLocaleDateString()
