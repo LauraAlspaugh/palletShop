@@ -1,5 +1,6 @@
 
 
+
 namespace palletShop.Services;
 public class PurchasesService
 {
@@ -16,5 +17,12 @@ public class PurchasesService
     {
         Purchase purchase = _purchasesRepository.CreatePurchase(purchaseData);
         return purchase;
+    }
+
+    internal List<Purchase> GetMyPurchases(string userId)
+    {
+        List<Purchase> purchases = _purchasesRepository.GetMyPurchases(userId);
+        purchases = purchases.FindAll(purchase => purchase.CreatorId == userId);
+        return purchases;
     }
 }

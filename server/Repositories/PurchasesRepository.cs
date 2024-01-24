@@ -1,4 +1,5 @@
 
+
 namespace palletShop.Repositories;
 public class PurchasesRepository
 {
@@ -28,5 +29,24 @@ public class PurchasesRepository
                   return purchase;
               }, purchaseData).FirstOrDefault();
         return purchase;
+    }
+
+    internal List<Purchase> GetMyPurchases(string userId)
+    {
+        string sql = @"
+       SELECT 
+       pur.*,
+       acc.*
+       FROM purchases pur
+       JOIN accounts acc ON acc.id = pur.creatorId
+       WHERE pur.creatorId = @userid;
+       ";
+
+        List<Purchase> purchases = _db.Query<Purchase, Account, Purchase>(sql, (purchase, account) =>
+        {
+            purchase.Creator = account;
+            return purchase;
+        }, new { userId }).ToList();
+        return purchases;
     }
 }
