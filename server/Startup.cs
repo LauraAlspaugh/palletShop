@@ -36,7 +36,11 @@ public class Startup
 
     services.AddScoped<ListingsRepository>();
     services.AddScoped<ListingsService>();
+
+    services.AddScoped<PurchasesRepository>();
+    services.AddScoped<PurchasesService>();
   }
+
 
   private void ConfigureCors(IServiceCollection services)
   {

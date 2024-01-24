@@ -17,6 +17,8 @@ public class ListingsService
         return listing;
     }
 
+
+
     internal string DestroyListing(int listingId, string userId)
     {
         Listing listing = GetListingById(listingId);

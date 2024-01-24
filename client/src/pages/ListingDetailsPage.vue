@@ -52,7 +52,7 @@ export default {
             async createPurchase() {
                 try {
                     const listingId = route.params.listingId
-                    await listingsService.createListing(listingId)
+                    await listingsService.createPurchase(listingId)
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error)
