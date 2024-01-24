@@ -22,6 +22,11 @@ const routes = [
     component: loadPage('ItemsPage')
   },
   {
+    path: '/cart',
+    name: 'Cart',
+    component: loadPage('CartPage')
+  },
+  {
     path: '/listing/:listingId',
     name: 'Listing',
     component: loadPage('ListingDetailsPage')

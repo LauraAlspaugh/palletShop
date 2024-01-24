@@ -22,5 +22,9 @@ async getListingById(listingId){
     AppState.listings.push(newListing)
     return newListing
 }
+async createPurchase(purchaseData){
+const res = await api.post('api/purchase', purchaseData)
+logger.log('You have purchased this!' , res.data)
+}
 }
 export const listingsService = new ListingsService()

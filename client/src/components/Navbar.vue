@@ -20,6 +20,11 @@
       </ul>
       <!-- LOGIN COMPONENT HERE -->
       <div>
+        <RouterLink :to="{ name: 'Cart' }">
+          <i type="button" class="mdi mdi-shopping fs-3 text-dark" title="checkout now?"></i>
+        </RouterLink>
+      </div>
+      <div>
         <button class="btn text-light" @click="toggleTheme"><i class="mdi"
             :class="theme == 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"></i></button>
       </div>

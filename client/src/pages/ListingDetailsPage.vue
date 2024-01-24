@@ -14,8 +14,10 @@
                     <input type="text" class="form-control" id="quantity" required>
 
                 </div>
-                <button class="btn btn-outline-dark mb-3">Add to Cart</button>
-                <button class="btn btn-dark text-white ">Buy Now</button>
+                <button @click="createPurchase()" class="btn btn-outline-dark mb-3">Add to Cart</button>
+                <RouterLink :to="{ name: 'Cart' }">
+                    <button class="btn btn-dark text-white ">Buy Now</button>
+                </RouterLink>
             </div>
         </section>
     </div>
@@ -46,7 +48,16 @@ export default {
             }
         }
         return {
-            listing: computed(() => AppState.activeListing)
+            listing: computed(() => AppState.activeListing),
+            async createPurchase() {
+                try {
+                    await listingsService.createListing()
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error)
+
+                }
+            }
         }
     }
 };
