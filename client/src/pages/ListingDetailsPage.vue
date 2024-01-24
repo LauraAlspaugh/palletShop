@@ -51,7 +51,8 @@ export default {
             listing: computed(() => AppState.activeListing),
             async createPurchase() {
                 try {
-                    await listingsService.createListing()
+                    const listingId = route.params.listingId
+                    await listingsService.createListing(listingId)
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error)

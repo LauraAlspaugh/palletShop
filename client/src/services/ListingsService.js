@@ -1,5 +1,6 @@
 import { AppState } from "../AppState.js"
 import { Listing } from "../models/Listing.js"
+import { Purchase } from "../models/Purchase.js"
 import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
@@ -22,9 +23,10 @@ async getListingById(listingId){
     AppState.listings.push(newListing)
     return newListing
 }
-async createPurchase(purchaseData){
-const res = await api.post('api/purchase', purchaseData)
+async createPurchase(listingId){
+const res = await api.post('api/purchases', {listingId})
 logger.log('You have purchased this!' , res.data)
+AppState.purchases.push(new Purchase(res.data))
 }
 }
 export const listingsService = new ListingsService()
