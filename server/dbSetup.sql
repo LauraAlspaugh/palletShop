@@ -17,4 +17,12 @@ SELECT * FROM purchases
 DROP TABLE purchases
 
 ALTER TABLE purchases
-ADD COLUMN FOREIGN KEY (listingId) REFERENCES listings (id) ON DELETE CASCADE
+ADD COLUMN FOREIGN KEY (listingId) REFERENCES listings (id) ON DELETE CASCADE;
+
+SELECT pur.*, lis.*, acc.*
+FROM
+    purchases pur
+    JOIN listings lis ON lis.id = pur.listingId
+    JOIN accounts acc ON acc.id = pur.creatorId
+WHERE
+    pur.creatorId = "6579f2b038eec22c9d9a6b0f";

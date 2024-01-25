@@ -36,15 +36,16 @@ public class PurchasesRepository
         string sql = @"
        SELECT 
        pur.*,
-       acc.*
+       lis.*
        FROM purchases pur
-       JOIN accounts acc ON acc.id = pur.creatorId
-       WHERE pur.creatorId = @userid;
+       JOIN listings lis ON lis.id = pur.listingId
+       WHERE pur.creatorId = @UserId;
        ";
 
-        List<Purchase> purchases = _db.Query<Purchase, Account, Purchase>(sql, (purchase, account) =>
+        List<Purchase> purchases = _db.Query<Purchase, Listing, Purchase>(sql, (purchase, listing) =>
         {
-            purchase.Creator = account;
+            // purchase.Creator = account;
+            purchase.Listing = listing;
             return purchase;
         }, new { userId }).ToList();
         return purchases;

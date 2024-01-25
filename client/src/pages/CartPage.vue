@@ -7,7 +7,7 @@
         </section>
         <section v-if="listing" class="row justify-content-evenly">
             <div v-for="purchase in purchases" :key="purchase.id" class="col-8">
-                {{ purchase.listing }}
+                <img :src="purchase.listing.img" alt="listing image">
             </div>
         </section>
     </div>
