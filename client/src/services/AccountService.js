@@ -16,7 +16,7 @@ class AccountService {
   async getMyPurchases(){
     const res = await api.get('/account/purchases')
     logger.log('getting my purchases!', res.data)
-    AppState.myPurchases = res.data.map((purchase)=> new Purchase(purchase))
+    AppState.purchases = res.data.map((purchase)=> new Purchase(purchase))
 }
 }
 

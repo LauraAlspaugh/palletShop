@@ -5,9 +5,9 @@
                 <p class="text-center fs-1 p-4">Your Shopping Cart</p>
             </div>
         </section>
-        <section class="row justify-content-evenly">
+        <section v-if="listing" class="row justify-content-evenly">
             <div v-for="purchase in purchases" :key="purchase.id" class="col-8">
-                <ListingCard />
+                {{ purchase.listing }}
             </div>
         </section>
     </div>
@@ -37,8 +37,8 @@ export default {
         }
         return {
             account: computed(() => AppState.account),
-            purchases: computed(() => AppState.myPurchases),
-            listings: computed(() => AppState.listings)
+            purchases: computed(() => AppState.purchases),
+            listing: computed(() => AppState.listings)
         };
     },
     components: { ListingCard }
