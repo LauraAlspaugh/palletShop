@@ -5,9 +5,12 @@
                 <p class="text-center fs-1 p-4">Your Shopping Cart</p>
             </div>
         </section>
-        <section v-if="listing" class="row justify-content-evenly">
-            <div v-for="purchase in purchases" :key="purchase.id" class="col-8">
-                <img :src="purchase.listing.img" alt="listing image">
+        <section v-for="purchase in purchases" :key="purchase.id" class="row justify-content-evenly mb-5">
+            <div class="col-4">
+                <img class="img-fluid" :src="purchase.listing.img" alt="listing image">
+            </div>
+            <div class="col-4">
+                <p class="fs-4 p-0 mt-5">{{ purchase.listing.name }}</p>
             </div>
         </section>
     </div>
@@ -46,4 +49,12 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+img {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    position: center;
+    border: 1px solid black;
+}
+</style>
