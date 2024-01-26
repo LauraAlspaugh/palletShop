@@ -21,7 +21,7 @@ public class PurchasesController : ControllerBase
         {
             Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
             purchaseData.CreatorId = userInfo.Id;
-            Purchase purchase = _purchasesService.CreatePurchase(purchaseData);
+            Purchase purchase = _purchasesService.CreatePurchase(purchaseData, userInfo.Id);
             return Ok(purchase);
         }
         catch (Exception error)

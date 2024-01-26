@@ -21,7 +21,7 @@ public class ListingsService
 
     internal string DestroyListing(int listingId, string userId)
     {
-        Listing listing = GetListingById(listingId);
+        Listing listing = GetListingById(listingId, userId);
         if (listing.CreatorId != userId)
         {
             throw new Exception("not your listing to destroy!");
@@ -33,7 +33,7 @@ public class ListingsService
 
     internal Listing EditListing(int listingId, Listing listingData, string userId)
     {
-        Listing listing = GetListingById(listingId);
+        Listing listing = GetListingById(listingId, userId);
         if (listing.CreatorId != userId)
         {
             throw new Exception("not your listing to edit!");
@@ -48,7 +48,7 @@ public class ListingsService
         return listing;
     }
 
-    internal Listing GetListingById(int listingId)
+    internal Listing GetListingById(int listingId, string userId)
     {
         Listing listing = _listingsRepository.GetListingById(listingId);
         if (listing == null)

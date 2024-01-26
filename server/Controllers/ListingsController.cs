@@ -43,11 +43,12 @@ public class ListingsController : ControllerBase
         }
     }
     [HttpGet("{listingId}")]
-    public ActionResult<Listing> GetListingById(int listingId)
+    public async Task<ActionResult<Listing>> GetListingById(int listingId)
     {
         try
         {
-            Listing listing = _listingsService.GetListingById(listingId);
+            Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+            Listing listing = _listingsService.GetListingById(listingId, userInfo?.Id);
             return Ok(listing);
         }
         catch (Exception error)

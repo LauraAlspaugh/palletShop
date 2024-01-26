@@ -52,6 +52,7 @@ export default {
             async createPurchase() {
                 try {
                     const listingId = route.params.listingId
+                    AppState.activeListing.quantity--
                     await listingsService.createPurchase(listingId)
                 } catch (error) {
                     logger.error(error)

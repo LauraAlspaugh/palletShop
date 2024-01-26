@@ -6,11 +6,14 @@
             </div>
         </section>
         <section v-for="purchase in purchases" :key="purchase.id" class="row justify-content-evenly mb-5">
-            <div class="col-4">
+            <div class="col-3">
                 <img class="img-fluid" :src="purchase.listing.img" alt="listing image">
             </div>
-            <div class="col-4">
-                <p class="fs-4 p-0 mt-5">{{ purchase.listing.name }}</p>
+            <div class="col-4 listing-name">
+                <p class="fs-4">{{ purchase.listing.name }}</p>
+            </div>
+            <div class="col-4 listing-name">
+                <p class="fs-4 p-0">${{ purchase.listing.price }}</p>
             </div>
         </section>
     </div>
@@ -56,5 +59,11 @@ img {
     object-fit: cover;
     position: center;
     border: 1px solid black;
+}
+
+.listing-name {
+    display: flex;
+    align-items: center;
+    font-family: 'Pinyon Script', cursive;
 }
 </style>

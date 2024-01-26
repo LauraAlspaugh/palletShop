@@ -6,16 +6,21 @@ public class PurchasesService
 {
     private readonly PurchasesRepository _purchasesRepository;
     private readonly ListingsService _listingsService;
+    private readonly ListingsRepository _listingsRepository;
 
-    public PurchasesService(PurchasesRepository purchasesRepository, ListingsService listingsService)
+    public PurchasesService(PurchasesRepository purchasesRepository, ListingsService listingsService, ListingsRepository listingsRepository)
     {
         _purchasesRepository = purchasesRepository;
         _listingsService = listingsService;
+        _listingsRepository = listingsRepository;
     }
 
-    internal Purchase CreatePurchase(Purchase purchaseData)
+    internal Purchase CreatePurchase(Purchase purchaseData, string userId)
     {
         Purchase purchase = _purchasesRepository.CreatePurchase(purchaseData);
+        Listing listing = _listingsService.GetListingById(purchaseData.ListingId, userId);
+        purchase.Listing.Price--;
+        _listingsRepository.EditListing(listing);
         return purchase;
     }
 
