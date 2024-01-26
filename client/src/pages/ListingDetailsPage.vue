@@ -16,7 +16,7 @@
                 </div>
                 <button @click="createPurchase()" class="btn btn-outline-dark mb-3">Add to Cart</button>
                 <RouterLink :to="{ name: 'Cart' }">
-                    <button class="btn btn-dark text-white ">Buy Now</button>
+                    <button @click="createPurchase()" class="btn btn-dark text-white ">Buy Now</button>
                 </RouterLink>
             </div>
         </section>

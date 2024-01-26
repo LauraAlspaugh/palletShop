@@ -18,14 +18,16 @@ public class PurchasesRepository
     VALUES(@ListingId, @CreatorId);
     SELECT 
     pur.*,
-    acc.*
+    lis.*
     FROM purchases pur
-    JOIN accounts acc ON pur.creatorId = acc.id
+    JOIN listings lis ON lis.id = pur.listingId
+
     WHERE pur.id = LAST_INSERT_ID();
 ";
-        Purchase purchase = _db.Query<Purchase, Account, Purchase>(sql, (purchase, account) =>
+        Purchase purchase = _db.Query<Purchase, Listing, Purchase>(sql, (purchase, listing) =>
               {
-                  purchase.Creator = account;
+                  //   purchase.Creator = account;
+                  purchase.Listing = listing;
                   return purchase;
               }, purchaseData).FirstOrDefault();
         return purchase;
