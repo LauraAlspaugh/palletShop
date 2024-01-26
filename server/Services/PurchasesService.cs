@@ -19,7 +19,7 @@ public class PurchasesService
     {
         Purchase purchase = _purchasesRepository.CreatePurchase(purchaseData);
         Listing listing = _listingsService.GetListingById(purchaseData.ListingId, userId);
-        purchase.Listing.Price--;
+        listing.Quantity--;
         _listingsRepository.EditListing(listing);
         return purchase;
     }
