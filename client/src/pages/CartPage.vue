@@ -1,12 +1,14 @@
 <template>
     <div class="container-fluid">
-        <section class="row justify-content-start">
-            <div class="col-2">
-                <p class="fs-2 p-4 mr-3">My Cart</p>
+        <section class="row">
+            <div class="col-12 text-center">
+                <p class="fs-4 p-4">My Cart</p>
             </div>
         </section>
-        <section v-for="purchase in purchases" :key="purchase.id" class="row d-flex mb-3 justify-content-center items-list">
+        <section v-for="purchase in purchases" :key="purchase.id"
+            class="row d-flex mb-3 justify-content-between items-list">
             <!-- <div v-for="purchase in purchases" :key="purchase.id"> -->
+
             <div class="col-2">
                 <img class="img-fluid" :src="purchase.listing.img" alt="listing image">
             </div>
@@ -17,18 +19,18 @@
             <div class="col-3 listing-name">
                 <p class="fs-4 p-0">${{ purchase.listing.price }}</p>
             </div>
-            <!-- </div> -->
         </section>
-        <section v-for="purchase in purchases" :key="purchase.id" class="row justify-content-evenly mb-5">
-        </section>
+
         <section class="row justify-content-evenly">
-            <div class="col-10">
-                <!-- <p class="fs-3 text-center">Total:{{ purchases.forEach(purchase => purchases.listing.price++) }}
-                </p> -->
+            <div class="col-10 text-center">
+                <p class="fs-4">Order Summary</p>
+                <p>Subtotal</p>
+                <p class="fs-5">Total</p>
             </div>
             <div class="text-center mb-3">
 
                 <button type="button" class="btn btn-dark">Checkout</button>
+                <p><i class="mdi mdi-shopping fs-5 m-1"></i>Secure Checkout</p>
             </div>
         </section>
     </div>
@@ -101,7 +103,7 @@ export default {
 <style lang="scss" scoped>
 img {
     height: 100px;
-    width: 80%;
+    width: 70%;
     object-fit: cover;
     position: center;
     border: 1px solid black;
@@ -116,7 +118,7 @@ img {
 .items-list {
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
-    width: 60%;
+    width: 100%;
     padding: 5px;
 }
 </style>
