@@ -1,25 +1,34 @@
 <template>
     <div class="container-fluid">
-        <section class="row justify-content-evenly">
-            <div class="col-8">
-                <p class="text-center fs-1 p-4">Your Shopping Cart</p>
+        <section class="row justify-content-start">
+            <div class="col-2">
+                <p class="fs-2 p-4 mr-3">My Cart</p>
             </div>
         </section>
-        <section v-for="purchase in purchases" :key="purchase.id" class="row justify-content-evenly mb-5">
-            <div class="col-3">
+        <section v-for="purchase in purchases" :key="purchase.id" class="row d-flex mb-3 justify-content-center items-list">
+            <!-- <div v-for="purchase in purchases" :key="purchase.id"> -->
+            <div class="col-2">
                 <img class="img-fluid" :src="purchase.listing.img" alt="listing image">
             </div>
-            <div class="col-4 listing-name">
+
+            <div class="col-3 listing-name">
                 <p class="fs-4">{{ purchase.listing.name }}</p>
             </div>
-            <div class="col-4 listing-name">
+            <div class="col-3 listing-name">
                 <p class="fs-4 p-0">${{ purchase.listing.price }}</p>
             </div>
+            <!-- </div> -->
+        </section>
+        <section v-for="purchase in purchases" :key="purchase.id" class="row justify-content-evenly mb-5">
         </section>
         <section class="row justify-content-evenly">
             <div class="col-10">
                 <!-- <p class="fs-3 text-center">Total:{{ purchases.forEach(purchase => purchases.listing.price++) }}
                 </p> -->
+            </div>
+            <div class="text-center mb-3">
+
+                <button type="button" class="btn btn-dark">Checkout</button>
             </div>
         </section>
     </div>
@@ -91,16 +100,23 @@ export default {
 
 <style lang="scss" scoped>
 img {
-    height: 300px;
-    width: 100%;
+    height: 100px;
+    width: 80%;
     object-fit: cover;
     position: center;
     border: 1px solid black;
 }
 
 .listing-name {
-    display: flex;
-    align-items: center;
     font-family: 'Pinyon Script', cursive;
+    align-items: center;
+    display: flex;
+}
+
+.items-list {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    width: 60%;
+    padding: 5px;
 }
 </style>
