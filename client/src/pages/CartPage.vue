@@ -16,6 +16,12 @@
                 <p class="fs-4 p-0">${{ purchase.listing.price }}</p>
             </div>
         </section>
+        <section class="row justify-content-evenly">
+            <div class="col-10">
+                <!-- <p class="fs-3 text-center">Total:{{ purchases.forEach(purchase => purchases.listing.price++) }}
+                </p> -->
+            </div>
+        </section>
     </div>
 </template>
 
@@ -29,8 +35,10 @@ import { accountService } from '../services/AccountService.js';
 import ListingCard from '../components/ListingCard.vue';
 export default {
     setup() {
+        const calculatedTotal = calculateTotal()
         onMounted(() => {
             getMyPurchases();
+            calculateTotal();
         });
         async function getMyPurchases() {
             try {
@@ -41,7 +49,36 @@ export default {
                 Pop.error(error);
             }
         }
+        async function calculateTotal() {
+            try {
+                const total = 0
+                AppState.listings.forEach(listings => {
+                    const totalPrice = listings.price * listings.quantity
+                    total += totalPrice
+                })
+                return total
+            } catch (error) {
+                logger.error(error)
+                Pop.error(error)
+
+            }
+        }
         return {
+            async calculateTotal() {
+                try {
+                    const total = 0
+                    AppState.listings.forEach(listings => {
+                        const totalPrice = listings.price * listings.quantity
+                        total += totalPrice
+                    })
+                    return total
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error)
+
+                }
+            },
+            calculatedTotal,
             account: computed(() => AppState.account),
             purchases: computed(() => AppState.purchases),
             listing: computed(() => AppState.listings)
