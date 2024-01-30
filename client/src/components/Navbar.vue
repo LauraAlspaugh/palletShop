@@ -71,7 +71,8 @@ a:hover {
 }
 
 .nav-color {
-  background-color: #B2BABB;
+  /* background-color: #B2BABB; */
+  background-color: white;
 }
 
 .navbar-nav .router-link-exact-active {

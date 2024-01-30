@@ -5,11 +5,10 @@
                 <p class="fs-4 p-4">My Cart</p>
             </div>
         </section>
-        <section v-for="purchase in purchases" :key="purchase.id"
-            class="row d-flex mb-3 justify-content-between items-list">
+        <section v-for="purchase in purchases" :key="purchase.id" class="row p-3 mb-3 justify-content-evenly items-list">
             <!-- <div v-for="purchase in purchases" :key="purchase.id"> -->
 
-            <div class="col-2">
+            <div class="col-3">
                 <img class="img-fluid" :src="purchase.listing.img" alt="listing image">
             </div>
 
@@ -24,13 +23,14 @@
         <section class="row justify-content-evenly">
             <div class="col-10 text-center">
                 <p class="fs-4">Order Summary</p>
-                <p>Subtotal</p>
-                <p class="fs-5">Total</p>
+                <p>Subtotal $0.00</p>
+                <p class="fs-5">Total $0.00</p>
             </div>
-            <div class="text-center mb-3">
+            <div class="text-center mb-3 col-3">
 
-                <button type="button" class="btn btn-dark">Checkout</button>
-                <p><i class="mdi mdi-shopping fs-5 m-1"></i>Secure Checkout</p>
+                <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button"
+                    class="btn btn-dark w-100 check-button">Checkout</button>
+                <p class="p-2"><i class="mdi mdi-shopping fs-5 m-1"></i>Secure Checkout</p>
             </div>
         </section>
     </div>
@@ -103,10 +103,10 @@ export default {
 <style lang="scss" scoped>
 img {
     height: 100px;
-    width: 70%;
+    width: 50%;
     object-fit: cover;
     position: center;
-    border: 1px solid black;
+    border: 1px solid gray;
 }
 
 .listing-name {
@@ -120,5 +120,11 @@ img {
     border-bottom: 1px solid gray;
     width: 100%;
     padding: 5px;
+    margin-left: 3px;
+    margin-right: 5px;
+}
+
+.check-button {
+    border-radius: 0px;
 }
 </style>
