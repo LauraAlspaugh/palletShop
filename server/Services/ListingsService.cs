@@ -51,7 +51,7 @@ public class ListingsService
     internal Listing GetListingById(int listingId, string userId)
     {
         Listing listing = _listingsRepository.GetListingById(listingId);
-        if (listing == null)
+        if (listing == null || listing.Quantity < 1)
         {
             throw new Exception("not a valid listing id");
         }
@@ -60,7 +60,9 @@ public class ListingsService
 
     internal List<Listing> GetListings()
     {
+
         List<Listing> listings = _listingsRepository.GetListings();
+
         return listings;
     }
 }

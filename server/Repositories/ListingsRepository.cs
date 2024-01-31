@@ -95,16 +95,11 @@ SELECT lis.*,
     {
         string sql = @"
     SELECT 
-    lis.*,
-    acc.*
+    lis.*
     FROM listings lis
-    JOIN accounts acc ON lis.creatorId = acc.id
+    WHERE quantity > 0;
     ";
-        List<Listing> listings = _db.Query<Listing, Account, Listing>(sql, (listing, account) =>
-        {
-            listing.Creator = account;
-            return listing;
-        }).ToList();
+        List<Listing> listings = _db.Query<Listing>(sql).ToList();
         return listings;
     }
 }

@@ -47,7 +47,10 @@ export default {
         });
         async function getListings() {
             try {
+
+
                 await listingsService.getListings();
+
             }
             catch (error) {
                 logger.error(error);

@@ -26,3 +26,8 @@ FROM
     JOIN accounts acc ON acc.id = pur.creatorId
 WHERE
     pur.creatorId = "6579f2b038eec22c9d9a6b0f";
+
+SELECT lis.*
+FROM listings lis
+WHERE
+    quantity > 0

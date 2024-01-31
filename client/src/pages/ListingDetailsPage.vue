@@ -51,6 +51,9 @@ export default {
             listing: computed(() => AppState.activeListing),
             async createPurchase() {
                 try {
+                    if (AppState.activeListing.quantity == 0) {
+                        throw Pop.error("There is insufficient inventory!")
+                    }
                     const listingId = route.params.listingId
                     AppState.activeListing.quantity--
                     await listingsService.createPurchase(listingId)
