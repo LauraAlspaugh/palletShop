@@ -38,7 +38,6 @@ footer {
   display: grid;
   place-content: center;
   height: 32px;
-  // background-color: #B2BABB;
   background-color: white;
 }
 </style>

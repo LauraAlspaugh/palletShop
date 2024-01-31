@@ -2,7 +2,6 @@
   <div class="container-fluid">
     <section class="row">
       <div class="col-12">
-
       </div>
     </section>
     <section class="row justify-content-evenly mt-5">

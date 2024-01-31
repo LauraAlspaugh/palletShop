@@ -2,7 +2,6 @@
     <div class="container-fluid">
         <div class="section-row mb-3 p-4">
             <div class=" md-12 col-md-12 mt-3" v-if="!isMobile">
-
                 <div class="d-flex rounded-pill justify-content-around">
                     <button class="btn btn-outline-dark w-100 mx-3" @click="changeCategory('')">All</button>
                     <button class="btn btn-outline-dark  w-100 mx-3" @click="changeCategory(category)"

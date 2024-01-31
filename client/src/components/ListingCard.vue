@@ -5,7 +5,6 @@
         </router-link>
         <p class="fs-4 text-center mt-2 listing-name">{{ listingProp.name }}</p>
         <p class="listing-name text-center fs-4">${{ listingProp.price }}.00</p>
-        <!-- <p class="text-center"><i class="mdi mdi-eye text-center"></i></p> -->
     </div>
 </template>
 

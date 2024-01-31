@@ -12,7 +12,6 @@
                 <div class="mb-3">
                     <label for="quantity" class="form-label fs-5">Quantity</label>
                     <input type="text" class="form-control" id="quantity" required>
-
                 </div>
                 <button @click="createPurchase()" class="btn btn-outline-dark mb-3">Add to Cart</button>
                 <RouterLink :to="{ name: 'Cart' }">

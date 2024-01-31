@@ -5,9 +5,8 @@
                 <p class="fs-4 p-4 cart-name">My Cart</p>
             </div>
         </section>
-        <section v-for="purchase in purchases" :key="purchase.id" class="row p-3 mb-3 justify-content-evenly items-list">
-            <!-- <div v-for="purchase in purchases" :key="purchase.id"> -->
 
+        <section v-for="purchase in purchases" :key="purchase.id" class="row p-3 mb-3 justify-content-evenly items-list">
             <div class="col-3">
                 <img class="img-fluid" :src="purchase.listing.img" alt="listing image">
             </div>
@@ -27,7 +26,6 @@
                 <p class="fs-5">Total ${{ calculatedTotal.toFixed(2) }}</p>
             </div>
             <div class="text-center mb-3 col-3">
-
                 <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button"
                     class="btn btn-dark w-100 check-button">Checkout</button>
                 <p class="p-2"><i class="mdi mdi-shopping fs-5 m-1"></i>Secure Checkout</p>
