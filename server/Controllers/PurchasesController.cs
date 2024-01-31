@@ -30,4 +30,36 @@ public class PurchasesController : ControllerBase
             return BadRequest(error.Message);
         }
     }
+    [Authorize]
+    [HttpDelete("{purchaseId}")]
+    public async Task<ActionResult<string>> DestroyPurchase(int purchaseId)
+    {
+        try
+        {
+            Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+            string userId = userInfo.Id;
+            string message = _purchasesService.DestroyPurchase(purchaseId, userId);
+            return Ok(message);
+        }
+        catch (Exception error)
+        {
+
+            return BadRequest(error.Message);
+        }
+    }
+    [HttpGet("{purchaseId}")]
+    public async Task<ActionResult<Purchase>> GetPurchaseById(int purchaseId)
+    {
+        try
+        {
+            Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+            Purchase purchase = _purchasesService.GetPurchaseById(purchaseId, userInfo.Id);
+            return Ok(purchase);
+        }
+        catch (Exception error)
+        {
+
+            return BadRequest(error.Message);
+        }
+    }
 }

@@ -1,5 +1,7 @@
 
 
+
+
 namespace palletShop.Repositories;
 public class PurchasesRepository
 {
@@ -33,6 +35,19 @@ public class PurchasesRepository
         return purchase;
     }
 
+    internal void DestroyPurchase(int purchaseId, string userId)
+    {
+        string sql = @"
+DELETE FROM purchases WHERE id = @purchaseId LIMIT 1;
+SELECT pur.*,
+    acc.*
+    FROM purchases pur
+    JOIN accounts acc ON pur.creatorId = acc.id
+    Where pur.id = @purchaseId;
+";
+        _db.Execute(sql, new { purchaseId });
+    }
+
     internal List<Purchase> GetMyPurchases(string userId)
     {
         string sql = @"
@@ -51,5 +66,23 @@ public class PurchasesRepository
             return purchase;
         }, new { userId }).ToList();
         return purchases;
+    }
+
+    internal Purchase GetPurchaseById(int purchaseId)
+    {
+        string sql = @"
+       SELECT 
+       pur.*,
+       acc.*
+       FROM purchases pur
+       JOIN accounts acc ON pur.creatorId = acc.id
+       WHERE pur.id = @purchaseId;
+       ";
+        Purchase purchase = _db.Query<Purchase, Account, Purchase>(sql, (purchase, account) =>
+         {
+             purchase.Creator = account;
+             return purchase;
+         }, new { purchaseId }).FirstOrDefault();
+        return purchase;
     }
 }

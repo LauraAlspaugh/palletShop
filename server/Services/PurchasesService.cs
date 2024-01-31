@@ -1,6 +1,8 @@
 
 
 
+
+
 namespace palletShop.Services;
 public class PurchasesService
 {
@@ -24,10 +26,27 @@ public class PurchasesService
         return purchase;
     }
 
+    internal string DestroyPurchase(int purchaseId, string userId)
+    {
+        Purchase purchase = GetPurchaseById(purchaseId, userId);
+        if (purchase.CreatorId != userId)
+        {
+            throw new Exception("not yours to destroy");
+        }
+        _purchasesRepository.DestroyPurchase(purchaseId, userId);
+        return "it really is gone!";
+    }
+
     internal List<Purchase> GetMyPurchases(string userId)
     {
         List<Purchase> purchases = _purchasesRepository.GetMyPurchases(userId);
         purchases = purchases.FindAll(purchase => purchase.CreatorId == userId);
         return purchases;
+    }
+
+    internal Purchase GetPurchaseById(int purchaseId, string id)
+    {
+        Purchase purchase = _purchasesRepository.GetPurchaseById(purchaseId);
+        return purchase;
     }
 }
