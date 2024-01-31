@@ -24,7 +24,7 @@
             <div class="col-10 text-center">
                 <p class="fs-4">Order Summary</p>
                 <p>Subtotal $0.00</p>
-                <p class="fs-5">Total $0.00</p>
+                <p class="fs-5">Total ${{ calculatedTotal.toFixed(2) }}</p>
             </div>
             <div class="text-center mb-3 col-3">
 
@@ -39,18 +39,24 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
+import { computed, reactive, onMounted, ref, watchEffect } from 'vue';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { accountService } from '../services/AccountService.js';
 import ListingCard from '../components/ListingCard.vue';
 export default {
     setup() {
-        const calculatedTotal = calculateTotal()
+        const calculatedTotal = ref(0)
         onMounted(() => {
             getMyPurchases();
-            calculateTotal();
+
         });
+        watchEffect(() => {
+            if (AppState.purchases.length > 0) {
+
+                calculateTotal()
+            }
+        })
         async function getMyPurchases() {
             try {
                 await accountService.getMyPurchases();
@@ -62,12 +68,14 @@ export default {
         }
         async function calculateTotal() {
             try {
-                const total = 0
-                AppState.listings.forEach(listings => {
-                    const totalPrice = listings.price * listings.quantity
+                let total = 0
+                logger.log("am i reaching this level of total")
+                AppState.purchases.forEach(purchase => {
+                    const totalPrice = purchase.listing.price
                     total += totalPrice
+
                 })
-                return total
+                calculatedTotal.value = total
             } catch (error) {
                 logger.error(error)
                 Pop.error(error)
@@ -75,20 +83,7 @@ export default {
             }
         }
         return {
-            async calculateTotal() {
-                try {
-                    const total = 0
-                    AppState.listings.forEach(listings => {
-                        const totalPrice = listings.price * listings.quantity
-                        total += totalPrice
-                    })
-                    return total
-                } catch (error) {
-                    logger.error(error)
-                    Pop.error(error)
 
-                }
-            },
             calculatedTotal,
             account: computed(() => AppState.account),
             purchases: computed(() => AppState.purchases),
