@@ -28,5 +28,10 @@ const res = await api.post('api/purchases', {listingId})
 logger.log('You have purchased this!' , res.data)
 AppState.purchases.push(new Purchase(res.data))
 }
+async destroyPurchase(purchaseId){
+    const res = await api.delete(`api/purchases/ ${purchaseId}`)
+    logger.log('you are removing this purchase', res.data)
+    AppState.purchases = AppState.purchases.filter((purchase) => purchase.id != purchaseId)
+}
 }
 export const listingsService = new ListingsService()

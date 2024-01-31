@@ -13,6 +13,10 @@
 
             <div class="col-3 listing-name">
                 <p class="fs-5">{{ purchase.listing.name }}</p>
+                <p class="p-2">
+                    <i @click="destroyPurchase(purchase.id)" class="mdi mdi-minus fs-5" role="button"
+                        title="remove this purchase?"></i>
+                </p>
             </div>
             <div class="col-3 pricing-name">
                 <p class="fs-4 p-0">${{ purchase.listing.price }}</p>
@@ -42,6 +46,7 @@ import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { accountService } from '../services/AccountService.js';
 import ListingCard from '../components/ListingCard.vue';
+import { listingsService } from '../services/ListingsService.js';
 export default {
     setup() {
         const calculatedTotal = ref(0)
@@ -85,7 +90,21 @@ export default {
             calculatedTotal,
             account: computed(() => AppState.account),
             purchases: computed(() => AppState.purchases),
-            listing: computed(() => AppState.listings)
+            listing: computed(() => AppState.listings),
+            async destroyPurchase(purchaseId) {
+                try {
+                    const wantstoDestroy = await Pop.confirm('Are you sure you want to remove this Item? ');
+                    if (!wantstoDestroy) {
+                        return;
+                    }
+                    // const purchaseId = AppState.purchase
+                    await listingsService.destroyPurchase(purchaseId);
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error)
+
+                }
+            }
         };
     },
     components: { ListingCard }
