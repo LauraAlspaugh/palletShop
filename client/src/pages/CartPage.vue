@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <section class="row">
             <div class="col-12 text-center">
-                <p class="fs-4 p-4">My Cart</p>
+                <p class="fs-4 p-4 cart-name">My Cart</p>
             </div>
         </section>
         <section v-for="purchase in purchases" :key="purchase.id" class="row p-3 mb-3 justify-content-evenly items-list">
@@ -13,16 +13,16 @@
             </div>
 
             <div class="col-3 listing-name">
-                <p class="fs-4">{{ purchase.listing.name }}</p>
+                <p class="fs-5">{{ purchase.listing.name }}</p>
             </div>
-            <div class="col-3 listing-name">
+            <div class="col-3 pricing-name">
                 <p class="fs-4 p-0">${{ purchase.listing.price }}</p>
             </div>
         </section>
 
         <section class="row justify-content-evenly">
             <div class="col-10 text-center">
-                <p class="fs-4">Order Summary</p>
+                <p class="fs-4 cart-name">Order Summary</p>
                 <p>Subtotal $0.00</p>
                 <p class="fs-5">Total ${{ calculatedTotal.toFixed(2) }}</p>
             </div>
@@ -105,6 +105,11 @@ img {
 }
 
 .listing-name {
+    align-items: center;
+    display: flex;
+}
+
+.pricing-name {
     font-family: 'Pinyon Script', cursive;
     align-items: center;
     display: flex;
@@ -121,5 +126,9 @@ img {
 
 .check-button {
     border-radius: 0px;
+}
+
+.cart-name {
+    font-family: 'Pinyon Script', cursive;
 }
 </style>
