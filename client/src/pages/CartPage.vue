@@ -15,7 +15,7 @@
                 <p class="fs-5">{{ purchase.listing.name }}</p>
                 <p class="p-2">
                     <i @click="destroyPurchase(purchase.id)" class="mdi mdi-minus fs-5" role="button"
-                        title="remove this purchase?"></i>
+                        title="remove this item?"></i>
                 </p>
             </div>
             <div class="col-3 pricing-name">
@@ -26,7 +26,7 @@
         <section class="row justify-content-evenly">
             <div class="col-10 text-center">
                 <p class="fs-4 cart-name">Order Summary</p>
-                <p>Subtotal $0.00</p>
+                <p>Subtotal ${{ calculatedTotal.toFixed(2) }}</p>
                 <p class="fs-5">Total ${{ calculatedTotal.toFixed(2) }}</p>
             </div>
             <div class="text-center mb-3 col-3">
