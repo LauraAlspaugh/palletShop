@@ -16,8 +16,7 @@ SELECT * FROM purchases
 
 DROP TABLE purchases
 
-ALTER TABLE purchases
-ADD COLUMN FOREIGN KEY (listingId) REFERENCES listings (id) ON DELETE CASCADE;
+ALTER TABLE purchases ADD COLUMN purchaseQuantity INT NOT NULL;
 
 SELECT pur.*, lis.*, acc.*
 FROM
@@ -27,7 +26,4 @@ FROM
 WHERE
     pur.creatorId = "6579f2b038eec22c9d9a6b0f";
 
-SELECT lis.*
-FROM listings lis
-WHERE
-    quantity > 0
+SELECT lis.* FROM listings lis WHERE quantity > 0
