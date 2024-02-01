@@ -12,11 +12,11 @@
             </div>
 
             <div class="col-3 listing-name">
-                <p class="fs-5">{{ purchase.listing.name }}</p>
                 <p class="p-2">
                     <i @click="destroyPurchase(purchase.id)" class="mdi mdi-minus fs-5" role="button"
                         title="remove this item?"></i>
                 </p>
+                <p class="fs-5">{{ purchase.listing.name }}</p>
             </div>
             <div class="col-3 pricing-name">
                 <p class="fs-4 p-0">${{ purchase.listing.price }}</p>
@@ -30,7 +30,7 @@
                 <p class="fs-5">Total ${{ calculatedTotal.toFixed(2) }}</p>
             </div>
             <div class="text-center mb-3 col-3">
-                <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button"
+                <button @click="getMyPurchases()" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button"
                     class="btn btn-dark w-100 check-button">Checkout</button>
                 <p class="p-2"><i class="mdi mdi-shopping fs-5 m-1"></i>Secure Checkout</p>
             </div>
@@ -88,6 +88,7 @@ export default {
         return {
 
             calculatedTotal,
+            activeListing: computed(() => AppState.activeListing),
             account: computed(() => AppState.account),
             purchases: computed(() => AppState.purchases),
             listing: computed(() => AppState.listings),
@@ -103,6 +104,29 @@ export default {
                     logger.error(error)
                     Pop.error(error)
 
+                }
+            },
+            async createPurchase() {
+                try {
+                    if (AppState.listings.quantity == 0) {
+                        throw Pop.error("There is insufficient inventory!")
+                    }
+                    const listingId = route.params.listingId
+                    AppState.activeListing.quantity--
+                    await listingsService.createPurchase(listingId)
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error)
+
+                }
+            },
+            async getMyPurchases() {
+                try {
+                    await accountService.getMyPurchases();
+                }
+                catch (error) {
+                    logger.error(error);
+                    Pop.error(error);
                 }
             }
         };

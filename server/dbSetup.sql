@@ -16,7 +16,8 @@ SELECT * FROM purchases
 
 DROP TABLE purchases
 
-ALTER TABLE purchases ADD COLUMN purchaseQuantity INT NOT NULL;
+ALTER TABLE purchases
+ADD COLUMN purchaseQuantity INT NOT NULL DEFAULT 0;
 
 SELECT pur.*, lis.*, acc.*
 FROM
