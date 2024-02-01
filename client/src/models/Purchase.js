@@ -8,6 +8,7 @@ this.listing = data.listing
 this.listingId = data.listingId
 this.creatorId = data.creatorId
 this.creator = data.creator
+this.purchaseAmount = data.purchaseAmount
     }
     
 }

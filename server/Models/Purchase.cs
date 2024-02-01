@@ -6,6 +6,7 @@ public class Purchase
     public int ListingId { get; set; }
     public Account Creator { get; set; }
     public Listing Listing { get; set; }
+    public int PurchaseAmount { get; set; }
 
 
 
