@@ -54,7 +54,7 @@ export default {
                         throw Pop.error("There is insufficient inventory!")
                     }
                     const listingId = route.params.listingId
-                    AppState.activeListing.quantity--
+                    // AppState.activeListing.quantity--
                     await listingsService.createPurchase(listingId)
                 } catch (error) {
                     logger.error(error)

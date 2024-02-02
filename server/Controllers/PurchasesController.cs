@@ -62,4 +62,6 @@ public class PurchasesController : ControllerBase
             return BadRequest(error.Message);
         }
     }
+
+
 }

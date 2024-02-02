@@ -30,7 +30,7 @@
                 <p class="fs-5">Total ${{ calculatedTotal.toFixed(2) }}</p>
             </div>
             <div class="text-center mb-3 col-3">
-                <button @click="getMyPurchases()" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button"
+                <button @click="reservePurchases()" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button"
                     class="btn btn-dark w-100 check-button">Checkout</button>
                 <p class="p-2"><i class="mdi mdi-shopping fs-5 m-1"></i>Secure Checkout</p>
             </div>
@@ -99,6 +99,8 @@ export default {
                         return;
                     }
                     // const purchaseId = AppState.purchase
+                    const foundPurchase = AppState.purchases.find(purchase => purchase.id == purchaseId)
+
                     await listingsService.destroyPurchase(purchaseId);
                 } catch (error) {
                     logger.error(error)
@@ -120,9 +122,9 @@ export default {
 
                 }
             },
-            async getMyPurchases() {
+            async reservePurchases() {
                 try {
-                    await accountService.getMyPurchases();
+                    await accountService.reservePurchases();
                 }
                 catch (error) {
                     logger.error(error);

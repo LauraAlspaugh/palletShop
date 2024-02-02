@@ -102,4 +102,6 @@ SELECT lis.*,
         List<Listing> listings = _db.Query<Listing>(sql).ToList();
         return listings;
     }
+
+
 }

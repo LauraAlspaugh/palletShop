@@ -21,7 +21,7 @@ public class PurchasesService
     {
         Purchase purchase = _purchasesRepository.CreatePurchase(purchaseData);
         Listing listing = _listingsService.GetListingById(purchaseData.ListingId, userId);
-        listing.Quantity--;
+        // listing.Quantity--;
         _listingsRepository.EditListing(listing);
         return purchase;
     }
@@ -33,6 +33,7 @@ public class PurchasesService
         {
             throw new Exception("not yours to destroy");
         }
+
         _purchasesRepository.DestroyPurchase(purchaseId, userId);
         return "it really is gone!";
     }
@@ -41,6 +42,7 @@ public class PurchasesService
     {
         List<Purchase> purchases = _purchasesRepository.GetMyPurchases(userId);
         purchases = purchases.FindAll(purchase => purchase.CreatorId == userId);
+
         return purchases;
     }
 
@@ -49,4 +51,23 @@ public class PurchasesService
         Purchase purchase = _purchasesRepository.GetPurchaseById(purchaseId);
         return purchase;
     }
+
+    internal string ReservePurchase(string id)
+    {
+        List<Purchase> purchases = GetMyPurchases(id);
+        purchases.ForEach(purchase =>
+        {
+            if (purchase.PurchaseQuantity > purchase.Listing.Quantity)
+            {
+                throw new Exception("Insufficient Inventory!");
+            }
+            purchase.Listing.Quantity--;
+        });
+        purchases.ForEach(purchase =>
+        {
+            _listingsRepository.EditListing(purchase.Listing);
+        });
+        return "we have updated these items";
+    }
+
 }

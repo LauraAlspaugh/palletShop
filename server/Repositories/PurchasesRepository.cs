@@ -2,6 +2,7 @@
 
 
 
+
 namespace palletShop.Repositories;
 public class PurchasesRepository
 {
@@ -84,5 +85,10 @@ SELECT pur.*,
              return purchase;
          }, new { purchaseId }).FirstOrDefault();
         return purchase;
+    }
+
+    internal Purchase ReservePurchase(Purchase purchaseData)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -46,4 +46,20 @@ public class AccountController : ControllerBase
       return BadRequest(error.Message);
     }
   }
+  [Authorize]
+  [HttpPost("purchases")]
+  public async Task<ActionResult<Purchase>> ReservePurchase()
+  {
+    try
+    {
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      string purchase = _purchasesService.ReservePurchase(userInfo.Id);
+      return Ok(purchase);
+    }
+    catch (Exception error)
+    {
+
+      return BadRequest(error.Message);
+    }
+  }
 }

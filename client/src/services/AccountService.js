@@ -18,6 +18,11 @@ class AccountService {
     logger.log('getting my purchases!', res.data)
     AppState.purchases = res.data.map((purchase)=> new Purchase(purchase))
 }
+async reservePurchases(){
+  const res = await api.post('/account/purchases')
+  logger.log("reserving my items", res.data)
+
+}
 }
 
 export const accountService = new AccountService()
