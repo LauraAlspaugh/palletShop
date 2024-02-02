@@ -7,11 +7,11 @@
         </section>
 
         <section v-for="purchase in purchases" :key="purchase.id" class="row p-3 mb-3 justify-content-evenly items-list">
-            <div class="col-3">
+            <div class="col-12 col-md-3">
                 <img class="img-fluid" :src="purchase.listing.img" alt="listing image">
             </div>
 
-            <div class="col-3 listing-name">
+            <div class="col-12 col-md-3 listing-name">
                 <p class="p-2">
                     <i @click="destroyPurchase(purchase.id)" class="mdi mdi-minus fs-5" role="button"
                         title="remove this item?"></i>
@@ -29,7 +29,7 @@
                 <p>Subtotal ${{ calculatedTotal.toFixed(2) }}</p>
                 <p class="fs-5">Total ${{ calculatedTotal.toFixed(2) }}</p>
             </div>
-            <div class="text-center mb-3 col-3">
+            <div class="text-center mb-3 col-12 col-md-3">
                 <button @click="reservePurchases()" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button"
                     class="btn btn-dark w-100 check-button">Checkout</button>
                 <p class="p-2"><i class="mdi mdi-shopping fs-5 m-1"></i>Secure Checkout</p>
@@ -173,5 +173,17 @@ img {
 
 .cart-name {
     font-family: 'Pinyon Script', cursive;
+}
+
+@media (max-width: 900px) {
+
+    .items-list {
+        text-align: center;
+    }
+
+    .listing-name {
+        display: flex;
+        text-align: center;
+    }
 }
 </style>

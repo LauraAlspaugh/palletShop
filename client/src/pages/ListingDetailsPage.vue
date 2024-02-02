@@ -1,21 +1,21 @@
 <template>
     <div class="container-fluid mt-5">
         <section v-if="listing" class="row justify-content-center">
-            <div class="col-4">
+            <div class="col-12 col-md-4">
                 <img class="img-fluid" :src="listing.img" alt="image of listing">
             </div>
-            <div class="col-4">
+            <div class="col-12 col-md-4 second-column">
                 <p class="p-0 mt-5 fs-3 listing-name">{{ listing.name }}</p>
                 <p>{{ listing.description }}</p>
                 <p class="price-name fs-5">${{ listing.price }}.00</p>
                 <p>{{ listing.quantity }} in stock</p>
-                <div class="mb-3">
+                <div class="mb-3 quantity-box">
                     <label for="quantity" class="form-label fs-5">Quantity</label>
                     <input type="text" class="form-control" id="quantity" required>
                 </div>
                 <button @click="createPurchase()" class="btn btn-outline-dark mb-3">Add to Cart</button>
                 <RouterLink :to="{ name: 'Cart' }">
-                    <button @click="createPurchase()" class="btn btn-dark text-white ">Buy Now</button>
+                    <button @click="createPurchase()" class="btn btn-dark text-white buy-button mb-3">Buy Now</button>
                 </RouterLink>
             </div>
         </section>
@@ -99,5 +99,16 @@ label {
 
 .price-name {
     font-family: 'Pinyon Script', cursive;
+}
+
+@media (max-width: 900px) {
+
+    .second-column {
+        text-align: center;
+    }
+
+    input {
+        width: 100%;
+    }
 }
 </style>
