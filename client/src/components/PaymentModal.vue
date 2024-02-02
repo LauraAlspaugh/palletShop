@@ -11,7 +11,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-dark">Save changes</button>
+                    <button @click="completePurchase()" type="button" class="btn btn-dark">Save changes</button>
                 </div>
             </div>
         </div>
@@ -22,9 +22,23 @@
 <script>
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
+import { logger } from '../utils/Logger.js';
+import Pop from '../utils/Pop.js';
+import { listingsService } from '../services/ListingsService.js';
 export default {
     setup() {
-        return {}
+        return {
+            purchases: computed(() => AppState.purchases),
+            async completePurchase() {
+                try {
+                    AppState.myPurchases.listingsService.completePurchase()
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error)
+
+                }
+            }
+        }
     }
 };
 </script>

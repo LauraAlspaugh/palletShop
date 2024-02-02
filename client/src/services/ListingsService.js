@@ -33,5 +33,9 @@ async destroyPurchase(purchaseId){
     logger.log('you are removing this purchase', res.data)
     AppState.purchases = AppState.purchases.filter((purchase) => purchase.id != purchaseId)
 }
+async completePurchase(){
+    AppState.myPurchases = AppState.myPurchases.splice(AppState.myPurchases.length)
+    logger.log('clearing cart!')
+}
 }
 export const listingsService = new ListingsService()
