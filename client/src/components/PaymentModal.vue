@@ -58,7 +58,7 @@ import { listingsService } from '../services/ListingsService.js';
 export default {
     setup() {
         const editable = ref({})
-        const categories = ["Florida", "Pennsylvania", "Idaho", "Colorado", "Kansas"]
+        const categories = ["Florida", "Pennsylvania", "Idaho", "Colorado", "Kansas", "Virginia", "California", "Montana", "Washington", "Oregon", "New Mexico", "Arizona", "Maine", "Ohio", "Indiana"]
         return {
             categories,
             editable,
