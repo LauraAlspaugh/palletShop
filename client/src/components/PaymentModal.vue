@@ -8,19 +8,25 @@
                 </div>
                 <div class="modal-body">
                     Enter Address Info.
-                    <form>
+                    <form @submit.prevent="createReceipt()">
+                        <div class="mb-3 p-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input v-model="editable.buyer" type="text" class="form-control" id="name"
+                                aria-describedby="emailHelp">
+                        </div>
                         <div class="mb-3 p-3">
                             <label for="street" class="form-label">Street</label>
-                            <input type="text" class="form-control" id="text" aria-describedby="emailHelp">
+                            <input v-model="editable.street" type="text" class="form-control" id="text"
+                                aria-describedby="emailHelp">
                         </div>
                         <div class="d-flex">
                             <div class="mb-3 w-35 p-3">
                                 <label for="city" class="form-label">City</label>
-                                <input type="text" class="form-control" id="city">
+                                <input v-model="editable.city" type="text" class="form-control" id="city">
                             </div>
                             <div class="mb-3 w-25 p-3">
                                 <label for="category" class="form-label">State</label>
-                                <select v-model="editable.type" type="text" required class="form-select" id="category"
+                                <select v-model="editable.state1" type="text" required class="form-select" id="category"
                                     placeholder="Event Category...">
                                     <option :value="category" v-for="category in categories" :key="category">
                                         {{ category }}
@@ -29,8 +35,13 @@
                             </div>
                             <div class="mb-3 w-25 p-3">
                                 <label for="zip" class="form-label">Zip</label>
-                                <input type="text" class="form-control" id="zip">
+                                <input v-model="editable.zip" type="text" class="form-control" id="zip">
                             </div>
+                        </div>
+                        <div class="mb-3 p-3">
+                            <label for="total" class="form-label">Total</label>
+                            <input v-model="editable.total" type="number" class="form-control" id="total"
+                                aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3 form-check p-3">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -55,6 +66,7 @@ import { computed, reactive, onMounted, ref } from 'vue';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { listingsService } from '../services/ListingsService.js';
+import { receiptsService } from '../services/ReceiptsService.js';
 export default {
     setup() {
         const editable = ref({})
@@ -62,10 +74,22 @@ export default {
         return {
             categories,
             editable,
+            receipts: computed(() => AppState.receipts),
             purchases: computed(() => AppState.purchases),
             async completePurchase() {
                 try {
                     AppState.myPurchases.listingsService.completePurchase()
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error)
+
+                }
+            },
+            async createReceipt() {
+                try {
+                    const receiptData = editable.value
+                    const receipt = await receiptsService.createReceipt(receiptData)
+                    Pop.success('Event Created!')
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error)

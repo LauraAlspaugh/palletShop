@@ -8,5 +8,6 @@ export const AppState = reactive({
   listings: [],
   activeListing: null,
   purchases: [],
-  myPurchases: []
+  myPurchases: [],
+  receipts: []
 })
