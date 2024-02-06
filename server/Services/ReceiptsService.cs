@@ -1,4 +1,5 @@
 
+
 namespace palletShop.Services;
 public class ReceiptsService
 {
@@ -13,5 +14,11 @@ public class ReceiptsService
     {
         Receipt receipt = _receiptsRepository.CreateReceipt(receiptData, id);
         return receipt;
+    }
+
+    internal List<Receipt> GetReceipts()
+    {
+        List<Receipt> receipts = _receiptsRepository.GetReceipts();
+        return receipts;
     }
 }

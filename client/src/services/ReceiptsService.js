@@ -11,5 +11,10 @@ async createReceipt(receiptData){
     AppState.receipts.push(newReceipt)
     return newReceipt
 }
+async getReceipts(){
+    const res = await api.get('api/receipts')
+    logger.log('getting receipts', res.data)
+    AppState.receipts = res.data.map(pojo => new Receipt(pojo))
+}
 }
 export const receiptsService = new ReceiptsService()

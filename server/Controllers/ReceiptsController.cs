@@ -28,4 +28,18 @@ public class ReceiptsController : ControllerBase
             return BadRequest(error.Message);
         }
     }
+    [HttpGet]
+    public ActionResult<List<Receipt>> GetReceipts()
+    {
+        try
+        {
+            List<Receipt> receipts = _receiptsService.GetReceipts();
+            return Ok(receipts);
+        }
+        catch (Exception error)
+        {
+
+            return BadRequest(error.Message);
+        }
+    }
 }

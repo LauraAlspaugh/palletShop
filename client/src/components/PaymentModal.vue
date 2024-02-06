@@ -6,7 +6,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Stripe Payment(insert third party)</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-center">
                     Enter Address Info.
                     <form @submit.prevent="createReceipt()">
                         <div class="mb-3 p-3">
@@ -43,16 +43,16 @@
                             <input v-model="editable.total" type="number" class="form-control" id="total"
                                 aria-describedby="emailHelp">
                         </div>
-                        <div class="mb-3 form-check p-3">
+                        <!-- <div class="mb-3 form-check p-3">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                        </div>
+                        </div> -->
                         <button type="submit" class="btn btn-outline-dark">Submit</button>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
-                    <button @click="completePurchase()" type="button" class="btn btn-dark">Save changes</button>
+                    <button @click="completePurchase()" type="button" class="btn btn-dark">Purchase</button>
                 </div>
             </div>
         </div>

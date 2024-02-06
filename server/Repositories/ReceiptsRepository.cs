@@ -1,4 +1,5 @@
 
+
 namespace palletShop.Repositories;
 public class ReceiptsRepository
 {
@@ -29,5 +30,22 @@ WHERE rec.id = LAST_INSERT_ID();
                   return receipt;
               }, receiptData).FirstOrDefault();
         return receipt;
+    }
+
+    internal List<Receipt> GetReceipts()
+    {
+        string sql = @"
+    SELECT 
+    rec.*,
+    acc.*
+    FROM receipts rec
+    JOIN accounts acc ON rec.creatorId = acc.id
+    ";
+        List<Receipt> receipts = _db.Query<Receipt, Account, Receipt>(sql, (receipt, account) =>
+        {
+            receipt.Creator = account;
+            return receipt;
+        }).ToList();
+        return receipts;
     }
 }
