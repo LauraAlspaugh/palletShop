@@ -13,8 +13,8 @@ public class ReceiptsRepository
     {
         string sql = @"
     INSERT INTO 
-    receipts(buyer, street, city, state1, zip, total, purchaseId, creatorId)
-    VALUES(@Buyer, @Street, @City, @State1, @Zip, @Total, @PurchaseId, @CreatorId);
+    receipts(buyer, street, city, state1, zip, total, creatorId)
+    VALUES(@Buyer, @Street, @City, @State1, @Zip, @Total, @CreatorId);
     SELECT 
     rec.*,
     acc.*

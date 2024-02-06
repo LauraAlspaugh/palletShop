@@ -10,13 +10,13 @@
                     Enter Address Info.
                     <form @submit.prevent="createReceipt()">
                         <div class="mb-3 p-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input v-model="editable.buyer" type="text" class="form-control" id="name"
+                            <label for="buyer" class="form-label">Name</label>
+                            <input v-model="editable.buyer" type="text" class="form-control" id="buyer"
                                 aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3 p-3">
                             <label for="street" class="form-label">Street</label>
-                            <input v-model="editable.street" type="text" class="form-control" id="text"
+                            <input v-model="editable.street" type="text" class="form-control" id="street"
                                 aria-describedby="emailHelp">
                         </div>
                         <div class="d-flex">
@@ -89,7 +89,8 @@ export default {
                 try {
                     const receiptData = editable.value
                     const receipt = await receiptsService.createReceipt(receiptData)
-                    Pop.success('Event Created!')
+
+                    Pop.success('Receipt Created!')
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error)

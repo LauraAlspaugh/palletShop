@@ -39,6 +39,9 @@ public class Startup
 
     services.AddScoped<PurchasesRepository>();
     services.AddScoped<PurchasesService>();
+
+    services.AddScoped<ReceiptsRepository>();
+    services.AddScoped<ReceiptsService>();
   }
 
 

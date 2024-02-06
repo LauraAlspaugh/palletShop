@@ -5,7 +5,7 @@ import { api } from "./AxiosService.js"
 
 class ReceiptsService{
 async createReceipt(receiptData){
-    const res = await api.post('api/receipts', {receiptData})
+    const res = await api.post('api/receipts', receiptData)
     logger.log("creating a receipt!")
     const newReceipt = new Receipt(res.data)
     AppState.receipts.push(newReceipt)

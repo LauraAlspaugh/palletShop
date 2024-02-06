@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS purchases (
 ) default charset utf8 COMMENT '';
 
 CREATE TABLE IF NOT EXISTS receipts (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, purchaseId INT NOT NULL, createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created', buyer VARCHAR(100) NOT NULL, street VARCHAR(100) NOT NULL, city VARCHAR(100) NOT NULL, state1 VARCHAR(100) NOT NULL, zip VARCHAR(100) NOT NULL, total INT NOT NULL DEFAULT 0, creatorId VARCHAR(255) NOT NULL, FOREIGN KEY (creatorId) REFERENCES accounts (id) ON DELETE CASCADE, FOREIGN KEY (purchaseId) REFERENCES purchases (id) ON DELETE CASCADE
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created', buyer VARCHAR(100) NOT NULL, street VARCHAR(100) NOT NULL, city VARCHAR(100) NOT NULL, state1 VARCHAR(100) NOT NULL, zip VARCHAR(100) NOT NULL, total INT NOT NULL DEFAULT 0, creatorId VARCHAR(255) NOT NULL, FOREIGN KEY (creatorId) REFERENCES accounts (id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
 
 SELECT * FROM listings
@@ -21,6 +21,8 @@ SELECT * FROM purchases
 SELECT * FROM receipts
 
 DROP TABLE purchases
+
+DROP TABLE receipts
 
 ALTER TABLE purchases
 ADD COLUMN purchaseQuantity INT NOT NULL DEFAULT 0;
@@ -34,3 +36,17 @@ WHERE
     pur.creatorId = "6579f2b038eec22c9d9a6b0f";
 
 SELECT lis.* FROM listings lis WHERE quantity > 0
+
+INSERT INTO
+    receipts (
+        buyer, street, city, state1, zip, total, creatorId
+    )
+VALUES (
+        @Buyer, @Street, @City, @State1, @Zip, @Total, @CreatorId
+    );
+
+SELECT rec.*, acc.*
+FROM receipts rec
+    JOIN accounts acc ON rec.creatorId = acc.id
+WHERE
+    rec.id = LAST_INSERT_ID();
