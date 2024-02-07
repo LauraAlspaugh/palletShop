@@ -4,15 +4,16 @@
     <img class="rounded" :src="account.picture" alt="" />
     <p>{{ account.email }}</p>
   </div>
-  <section class="row justify-content-evenly">
-    <div v-for="receipt in receipts" :key="receipt.id" class="col-4 text-center receipt-card">
-      <p class="fs-5">Ship To:</p>
+  <section class="row justify-content-evenly ">
+    <div v-for="receipt in receipts" :key="receipt.id" class="col-6 text-center mt-5 receipt-card">
+      <i class="mdi mdi-receipt"></i>
+      <p class="fs-4">Ship To:</p>
       <p class="mb-0">{{ receipt.buyer }}</p>
       <p class="mb-0">{{ receipt.street }}</p>
       <span>
         <p>{{ receipt.city }}, {{ receipt.state1 }} {{ receipt.zip }}</p>
       </span>
-      <p>Total: ${{ receipt.total }}</p>
+      <p class="fs-5">Total: ${{ receipt.total }}</p>
     </div>
   </section>
 </template>
@@ -51,7 +52,7 @@ img {
 }
 
 .receipt-card {
-  width: 22rem;
+  width: 30rem;
   border: 2px solid #7F8C8D;
   padding: 5px;
   border-radius: 7px;
