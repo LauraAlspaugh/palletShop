@@ -78,7 +78,7 @@ export default {
             purchases: computed(() => AppState.purchases),
             async completePurchase() {
                 try {
-                    AppState.myPurchases.listingsService.completePurchase()
+                    AppState.purchases = await listingsService.completePurchase()
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error)

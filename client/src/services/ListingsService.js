@@ -34,7 +34,7 @@ async destroyPurchase(purchaseId){
     AppState.purchases = AppState.purchases.filter((purchase) => purchase.id != purchaseId)
 }
 async completePurchase(){
-    AppState.myPurchases = AppState.myPurchases.splice(AppState.myPurchases.length)
+    AppState.purchases = AppState.purchases.splice(0, AppState.purchases.length)
     logger.log('clearing cart!')
 }
 }
