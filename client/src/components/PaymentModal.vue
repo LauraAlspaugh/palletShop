@@ -27,7 +27,7 @@
                             <div class="mb-3 w-25 p-3">
                                 <label for="category" class="form-label">State</label>
                                 <select v-model="editable.state1" type="text" required class="form-select" id="category"
-                                    placeholder="Event Category...">
+                                    placeholder="State...">
                                     <option :value="category" v-for="category in categories" :key="category">
                                         {{ category }}
                                     </option>
