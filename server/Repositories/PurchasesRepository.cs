@@ -49,6 +49,14 @@ SELECT pur.*,
         _db.Execute(sql, new { purchaseId });
     }
 
+    internal void EmptyCart(string creatorId)
+    {
+        string sql = @"
+       DELETE FROM purchases WHERE creatorId = @creatorId;
+       ";
+        _db.Execute(sql, new { creatorId });
+    }
+
     internal List<Purchase> GetMyPurchases(string userId)
     {
         string sql = @"

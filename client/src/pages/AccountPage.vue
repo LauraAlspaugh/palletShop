@@ -4,7 +4,7 @@
     <img class="rounded" :src="account.picture" alt="" />
     <p>{{ account.email }}</p>
   </div>
-  <section class="row justify-content-evenly ">
+  <section class="row justify-content-evenly mb-5">
     <p class="text-center fs-4">My Receipts</p>
     <div v-for="receipt in receipts" :key="receipt.id" class="col-6 text-center mt-5 receipt-card">
       <i class="mdi mdi-receipt"></i>

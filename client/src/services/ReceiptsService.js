@@ -10,6 +10,7 @@ async createReceipt(receiptData){
     const newReceipt = new Receipt(res.data)
     AppState.receipts.push(newReceipt)
     return newReceipt
+    
 }
 async getReceipts(){
     const res = await api.get('api/receipts')

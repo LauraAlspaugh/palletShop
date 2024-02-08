@@ -33,8 +33,8 @@ async destroyPurchase(purchaseId){
     logger.log('you are removing this purchase', res.data)
     AppState.purchases = AppState.purchases.filter((purchase) => purchase.id != purchaseId)
 }
-async completePurchase(){
-    AppState.purchases = AppState.purchases.splice(0, AppState.purchases.length, 0)
+async emptyCart(){
+    const res = await api.delete('api/purchases/emptycart')
     logger.log('clearing cart!')
 }
 }

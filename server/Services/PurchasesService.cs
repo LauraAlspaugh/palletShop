@@ -38,6 +38,12 @@ public class PurchasesService
         return "it really is gone!";
     }
 
+    internal string EmptyCart(string userId)
+    {
+        _purchasesRepository.EmptyCart(userId);
+        return "your cart has been emptied!";
+    }
+
     internal List<Purchase> GetMyPurchases(string userId)
     {
         List<Purchase> purchases = _purchasesRepository.GetMyPurchases(userId);

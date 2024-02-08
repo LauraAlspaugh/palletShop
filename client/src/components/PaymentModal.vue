@@ -8,7 +8,7 @@
                 </div>
                 <div class="modal-body text-center">
                     Enter Address Info.
-                    <form @submit.prevent="createReceipt()">
+                    <form @submit.prevent="completeCheckout()">
                         <div class="mb-3 p-3">
                             <label for="buyer" class="form-label">Name</label>
                             <input v-model="editable.buyer" type="text" class="form-control" id="buyer"
@@ -52,7 +52,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
-                    <button @click="completePurchase()" type="button" class="btn btn-dark">Purchase</button>
+                    <button @click="emptyCart()" type="button" class="btn btn-dark">Purchase</button>
                 </div>
             </div>
         </div>
@@ -76,9 +76,13 @@ export default {
             editable,
             receipts: computed(() => AppState.receipts),
             purchases: computed(() => AppState.purchases),
-            async completePurchase() {
+            async completeCheckout() {
+                await this.createReceipt()
+                this.emptyCart()
+            },
+            async emptyCart() {
                 try {
-                    AppState.purchases = await listingsService.completePurchase()
+                    AppState.purchases = await listingsService.emptyCart()
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error)
