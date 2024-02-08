@@ -5,6 +5,7 @@
     <p>{{ account.email }}</p>
   </div>
   <section class="row justify-content-evenly ">
+    <p class="text-center fs-4">My Receipts</p>
     <div v-for="receipt in receipts" :key="receipt.id" class="col-6 text-center mt-5 receipt-card">
       <i class="mdi mdi-receipt"></i>
       <p class="fs-4">Ship To:</p>
