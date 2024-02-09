@@ -34,7 +34,7 @@ export default {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 500px;
+  height: 600px;
   border-radius: 7px;
   filter: blur(4px);
   -webkit-filter: blur(4px);

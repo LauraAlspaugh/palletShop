@@ -15,6 +15,7 @@
         <p>{{ receipt.city }}, {{ receipt.state1 }} {{ receipt.zip }}</p>
       </span>
       <p class="fs-5">Total: ${{ receipt.total }}</p>
+      <i role="button" @click="destroyReceipt(receipt.id)" class="mdi mdi-close"></i>
     </div>
   </section>
 </template>
@@ -41,7 +42,20 @@ export default {
     }
     return {
       receipts: computed(() => AppState.receipts),
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      async destroyReceipt(receiptId) {
+        try {
+          const wantsToDelete = await Pop.confirm('Are you sure you want to delete this receipt? ');
+          if (!wantsToDelete) {
+            return;
+          }
+          await receiptsService.destroyReceipt(receiptId);
+        } catch (error) {
+          logger.error(error)
+          Pop.error(error)
+
+        }
+      }
     }
   }
 }
@@ -53,7 +67,7 @@ img {
 }
 
 .receipt-card {
-  width: 30rem;
+  width: 40rem;
   border: 2px solid #7F8C8D;
   padding: 5px;
   border-radius: 7px;

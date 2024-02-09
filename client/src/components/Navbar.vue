@@ -69,6 +69,7 @@ a:hover {
 
 .nav-color {
   background-color: white;
+  box-shadow: 0px 3px 10px gray;
 }
 
 .navbar-nav .router-link-exact-active {

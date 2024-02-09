@@ -39,5 +39,6 @@ footer {
   place-content: center;
   height: 32px;
   background-color: white;
+  box-shadow: 0px 3px 10px gray;
 }
 </style>
