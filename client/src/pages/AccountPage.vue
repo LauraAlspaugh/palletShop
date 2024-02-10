@@ -1,12 +1,12 @@
 <template>
   <div class="about text-center">
     <h1>Welcome {{ account.name }}</h1>
-    <img class="rounded" :src="account.picture" alt="" />
+    <img class="rounded-circle profile-pic" :src="account.picture" alt="" />
     <p>{{ account.email }}</p>
   </div>
   <section class="row justify-content-evenly mb-5">
     <p class="text-center fs-4">My Receipts</p>
-    <div v-for="receipt in receipts" :key="receipt.id" class="col-6 text-center mt-5 receipt-card">
+    <div v-for="receipt in receipts" :key="receipt.id" class="col-12 col-md-6 text-center mt-5 receipt-card">
       <i class="mdi mdi-receipt"></i>
       <p class="fs-4">Ship To:</p>
       <p class="mb-0">{{ receipt.buyer }}</p>
@@ -15,7 +15,7 @@
         <p>{{ receipt.city }}, {{ receipt.state1 }} {{ receipt.zip }}</p>
       </span>
       <p class="fs-5">Total: ${{ receipt.total }}</p>
-      <i role="button" @click="destroyReceipt(receipt.id)" class="mdi mdi-close"></i>
+      <i title="delete this receipt?" role="button" @click="destroyReceipt(receipt.id)" class="mdi mdi-close"></i>
     </div>
   </section>
 </template>
@@ -66,6 +66,10 @@ img {
   max-width: 100px;
 }
 
+.profile-pic {
+  border: 1px solid black;
+}
+
 .receipt-card {
   width: 40rem;
   border: 2px solid #7F8C8D;
@@ -78,5 +82,12 @@ img {
   backdrop-filter: blur(3.6px);
   -webkit-backdrop-filter: blur(3.6px);
   border: 1px solid #7F8C8D(30, 23, 23, 0.78);
+}
+
+@media (max-width: 900px) {
+
+  .receipt-card {
+    width: 20rem;
+  }
 }
 </style>
